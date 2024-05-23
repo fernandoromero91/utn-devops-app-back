@@ -12,6 +12,6 @@
   "description": "",
   "dependencies": {
     "express": "^4.19.2",
-    "mongoose": "^5.10.9"
+    "mongoose": "^5.13.22"
   }
 }
