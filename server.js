@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const app = express();
 
 const dbURI = process.env.MONGO_URI || 'mongodb://root:yari@db:27017/utn_devops';
@@ -7,13 +8,17 @@ console.log(`Connecting to MongoDB at ${dbURI}`);
 
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB connected...'))
-  .catch(err => console.log('MongoDB connection error:', err));
+  .catch(err => {
+    console.error('MongoDB connection error:', err);
+    process.exit(1);
+  });
 
 const userSchema = new mongoose.Schema({
   name: String,
   email: String
 });
 
+app.use(cors());
 const User = mongoose.model('User', userSchema);
 
 app.get('/api/users', (req, res) => {
@@ -25,9 +30,6 @@ app.get('/api/users', (req, res) => {
       res.json(users);
     }
   });
-});
-app.get("/", (req, res) => {
-  res.send("¡Hola Mundo!");
 });
 
 const PORT = process.env.PORT || 3000;
