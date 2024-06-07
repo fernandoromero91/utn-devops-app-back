@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "node server.js",
     "build": "echo \"Building project...\""
   },
@@ -15,5 +15,8 @@
     "cors": "^2.8.5",
     "express": "^4.19.2",
     "mongoose": "^5.13.22"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
   }
 }
